@@ -3,10 +3,11 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import config from '../utils/config';
+import { User } from '../types/user';
 
 export default function DashboardPage() {
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -38,11 +39,14 @@ export default function DashboardPage() {
     verifyToken();
   }, [router]);
 
-  if (loading) return <p>Loading...</p>;
+
+  if (loading || !user) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div>
-      <p>Welcome, {user.username}</p>
+      <p>Welcome, {user!.username}</p>
       <p>You are successfully logged in.</p>
     </div>
   );
