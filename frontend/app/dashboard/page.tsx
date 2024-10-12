@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import config from '../utils/config';
 
 export default function DashboardPage() {
   const [loading, setLoading] = useState(true);
@@ -17,7 +18,7 @@ export default function DashboardPage() {
       }
 
       // Make API call to the backend to verify the token
-      const res = await fetch('http://localhost:3001/profile', {
+      const res = await fetch(`${config.backendUrl}/profile`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,

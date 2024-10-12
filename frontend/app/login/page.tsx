@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import config from '../utils/config';
 
 export default function LoginPage() {
   const [username, setUsername] = useState('');
@@ -14,7 +15,7 @@ export default function LoginPage() {
     setError('');
 
     // Make API call to the backend authentication service
-    const response = await fetch('http://localhost:3001/auth/login', {
+    const response = await fetch(`${config.backendUrl}/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
