@@ -13,22 +13,21 @@ export default function LoginPage() {
     e.preventDefault();
     setError('');
 
-    // TODO: stitch to backend
     // Make API call to the backend authentication service
-    const res = await fetch('/', {
-      method: 'GET',
-      //headers: { 'Content-Type': 'application/json' },
-      //body: JSON.stringify({ username, password }),
+    const response = await fetch('http://localhost:3001/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
     });
 
-    console.log(res)
+    console.log(response)
 
-    if (true) {
-    // TODO: remove debug
-    //if (res.ok) {
-      //const { token } = await res.json();
-      const token = "test";
-      localStorage.setItem('token', token);  // Store token in localStorage
+    if (response.ok) {
+      const { access_token } = await response.json();
+      console.log(access_token);
+      localStorage.setItem('token', access_token);  // Store token in localStorage
       router.push('/dashboard');  // Redirect to dashboard after login
     } else {
       setError('Invalid credentials');

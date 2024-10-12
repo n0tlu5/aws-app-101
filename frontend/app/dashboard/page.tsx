@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 
 export default function DashboardPage() {
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [user, setUser] = useState(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -16,22 +16,21 @@ export default function DashboardPage() {
         return;
       }
 
-      // TODO: stitch to backend
       // Make API call to the backend to verify the token
-      const res = await fetch('/', {
+      const res = await fetch('http://localhost:3001/profile', {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${token}`,  // Send token in Authorization header
+          'Authorization': `Bearer ${token}`,
         },
       });
 
-      // TODO: remove debug
-      if (true) {
-      //if (res.ok) {
-        setLoading(false);  // If token is valid, allow user to view the dashboard
+      if (res.ok) {
+        const userData = await res.json();
+        setLoading(false);
+        setUser(userData);
       } else {
-        localStorage.removeItem('token');  // Remove invalid token
-        router.push('/login');  // Redirect to login if verification fails
+        localStorage.removeItem('token');
+        router.push('/login');
       }
     };
 
@@ -42,7 +41,7 @@ export default function DashboardPage() {
 
   return (
     <div>
-      <h1>Welcome to your Dashboard!</h1>
+      <p>Welcome, {user.username}</p>
       <p>You are successfully logged in.</p>
     </div>
   );
