@@ -42,6 +42,8 @@
 
 - A high level AWS arhitecture diagram
 
+![architecture diagram](https://www.plantuml.com/plantuml/png/NP51JuD048Nl-ol6NjH3zUx1T0crqTIciIOUZ8S1feZ2BkuCbiRqlxiBJI2Ga30ptvitBonOq4bJbUf2FgaYm0FFhKEJawen_SQSOBPjah98OOr7SZFuK-2Vzur-XHKA7V3u0SXWKCvbFzTrxKKeXJMmjfX1X2MQb5n7OvceqyZ15RzUFB7GknLiYELf1thxsBk4aZNdOwALco-6X-MPQ7jYl3z6mGHvQl1iJMxZ2BIKo9swwZf9rr0dTGanxGj3a5fZA0rXM0r9OJxlalZNVzuFry4TlDX6YCFXuEYdyHCUSUsKspjhX4msmCEo81aV5bI46T--kI9eGperx0nuSEgfVWnNOY5QNgk5z_2_-ny0)
+
 ## Bouns (Infrastructure as code)
 
 - Creating Load Balancer and EC2 with Auto Scaling Group using Terraform
